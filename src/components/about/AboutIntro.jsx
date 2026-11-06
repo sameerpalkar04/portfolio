@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import portrait from '../../assets/about-pfp.png'
+import CursorGrid from '../visuals/CursorGrid.jsx'
 
 const coursework = ['Database Management Systems', 'Operating Systems', 'Computer Networks', 'Data Structures & Algorithms', 'Web Programming', 'Artificial Intelligence & Machine Learning']
 
@@ -16,6 +17,7 @@ function MailIcon() {
 export default function AboutIntro() {
   return (
     <section className="about-intro">
+      <CursorGrid />
       <div className="about-portrait-column">
         <motion.h1 className="about-title" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>ABOUT ME<span>.</span></motion.h1>
         <motion.div className="about-portrait" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }} whileHover={{ scale: 1.012 }}><img src={portrait} alt="Sameer Palakar" /></motion.div>

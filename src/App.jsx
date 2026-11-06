@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, MotionConfig, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion, MotionConfig, useReducedMotion, useScroll } from 'framer-motion'
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Preloader from './components/Preloader.jsx'
 import Header from './components/Header.jsx'
@@ -7,17 +7,21 @@ import Footer from './components/Footer.jsx'
 import Hero from './components/Hero.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import './App.css'
+import './Homepage.css'
+
 
 function AppLayout() {
   const [loading, setLoading] = useState(true)
   const [theme, setTheme] = useState('dark')
   const location = useLocation()
   const reducedMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll()
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 1900)
     return () => window.clearTimeout(timer)
   }, [])
+
 
   useEffect(() => {
     if (location.hash) {
@@ -35,25 +39,26 @@ function AppLayout() {
           id="top"
           className={`site-shell theme-${theme} ${loading ? 'is-loading' : 'is-ready'}`}
         >
-          <Header theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={location.pathname}
-              className="route-content"
-              initial={reducedMotion ? false : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
-              transition={{ duration: reducedMotion ? 0.01 : 0.45, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Routes location={location}>
-                <Route path="/" element={<Hero theme={theme} />} />
-                <Route path="/about" element={<AboutPage theme={theme} />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </motion.div>
-          </AnimatePresence>
-          <Footer />
+              <motion.div className="reading-progress" style={{ scaleX: scrollYProgress }} aria-hidden="true" />
+              <Header theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={location.pathname}
+                  className="route-content"
+                  initial={reducedMotion ? false : { opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+                  transition={{ duration: reducedMotion ? 0.01 : 0.45, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Routes location={location}>
+                    <Route path="/" element={<Hero />} />
+                    <Route path="/about" element={<AboutPage theme={theme} />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </motion.div>
+              </AnimatePresence>
         </main>
+        <Footer />
       </>
     </MotionConfig>
   )

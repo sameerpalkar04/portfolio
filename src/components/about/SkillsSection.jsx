@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import SkillGroup from './SkillGroup.jsx'
-import DeferredThreeAccent from '../visuals/DeferredThreeAccent.jsx'
 
 const groups = [
   { title: 'Languages', skills: [
@@ -26,14 +26,101 @@ const groups = [
   ] },
 ]
 
-export default function SkillsSection({ theme }) {
+export default function SkillsSection() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const [touchDevice, setTouchDevice] = useState(false)
+  const sectionRef = useRef(null)
+  const isInView = useInView(sectionRef, { amount: 0.2 })
+  const reducedMotion = useReducedMotion()
+  const activeGroup = groups[activeIndex]
+
+  useEffect(() => {
+    const query = window.matchMedia('(pointer: coarse)')
+    const update = () => setTouchDevice(query.matches)
+    update()
+    query.addEventListener?.('change', update)
+    return () => query.removeEventListener?.('change', update)
+  }, [])
+
+  useEffect(() => {
+    if (paused || !isInView || reducedMotion || touchDevice) return undefined
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % groups.length)
+    }, 4200)
+    return () => window.clearInterval(timer)
+  }, [paused, isInView, reducedMotion, touchDevice])
+
+  const move = (direction) => {
+    setActiveIndex((current) => (current + direction + groups.length) % groups.length)
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowLeft') move(-1)
+    if (event.key === 'ArrowRight') move(1)
+  }
+
   return (
-    <section className="about-section skills-section" aria-labelledby="skills-title">
+    <section ref={sectionRef} className="about-section skills-section" aria-labelledby="skills-title">
       <motion.div className="section-heading" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.55 }}><span>02 / CAPABILITIES</span><h2 id="skills-title">SKILLS<span>.</span></h2></motion.div>
-      <DeferredThreeAccent className="skills-network-slot" variant="network" theme={theme} />
-      <motion.div className="skills-grid" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09, delayChildren: 0.04 } } }} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
-        {groups.map((group, index) => <SkillGroup key={group.title} index={String(index + 1).padStart(2, '0')} {...group} />)}
-      </motion.div>
+      <div
+        className="skills-carousel"
+        role="region"
+        aria-label="Skills by category"
+        aria-roledescription="carousel"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocusCapture={() => setPaused(true)}
+        onBlurCapture={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false)
+        }}
+      >
+        <button className="skills-carousel-arrow skills-carousel-arrow--prev" type="button" onClick={() => move(-1)} aria-label="Previous skill category">←</button>
+        <button className="skills-carousel-arrow skills-carousel-arrow--next" type="button" onClick={() => move(1)} aria-label="Next skill category">→</button>
+        <motion.div
+          className="skills-carousel-stage"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.12}
+          onDragEnd={(_, info) => {
+            if (info.offset.x < -45 || info.velocity.x < -350) move(1)
+            else if (info.offset.x > 45 || info.velocity.x > 350) move(-1)
+          }}
+        >
+          {groups.map((group, index) => {
+            const rawOffset = index - activeIndex
+            const offset = ((rawOffset + groups.length / 2) % groups.length + groups.length) % groups.length - groups.length / 2
+            const distance = Math.abs(offset)
+            return (
+              <motion.div
+                key={group.title}
+                className="skills-carousel-card"
+                aria-hidden={distance > 1}
+                animate={{
+                  x: `${offset * 62}%`,
+                  rotateY: offset * -38,
+                  scale: distance === 0 ? 1 : distance === 1 ? 0.82 : 0.66,
+                  opacity: distance <= 2 ? 1 : 0,
+                  zIndex: groups.length - distance,
+                }}
+                transition={{ type: 'spring', stiffness: 230, damping: 27, mass: 0.8 }}
+                onClick={() => distance > 0 && setActiveIndex(index)}
+                style={{ pointerEvents: distance <= 2 ? 'auto' : 'none' }}
+              >
+                <SkillGroup index={String(index + 1).padStart(2, '0')} {...group} />
+              </motion.div>
+            )
+          })}
+        </motion.div>
+        <div className="skills-carousel-controls">
+          <span aria-live={paused ? 'polite' : 'off'}><b>{String(activeIndex + 1).padStart(2, '0')}</b> / {String(groups.length).padStart(2, '0')} · {activeGroup.title}</span>
+        </div>
+        <div className="skills-carousel-dots" aria-label="Choose a skill category">
+          {groups.map((group, index) => <button key={group.title} type="button" aria-label={`Show ${group.title}`} aria-current={index === activeIndex ? 'true' : undefined} onClick={() => setActiveIndex(index)} />)}
+        </div>
+      </div>
     </section>
   )
 }

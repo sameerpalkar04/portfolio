@@ -12,7 +12,7 @@
 
 /* Keep navigation visible while anchor links move through the page. */
 .site-shell{overflow:clip}
-.site-header{position:sticky;top:0;z-index:10;background:rgba(29,29,29,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.site-header{position:sticky;top:0;z-index:10;background:#1d1d1d}
 html{scroll-padding-top:112px}
 #home,#about,#projects,#experience{scroll-margin-top:112px}
 @media(max-width:800px){html{scroll-padding-top:84px}#home,#about,#projects,#experience{scroll-margin-top:84px}}
@@ -30,7 +30,7 @@ html{scroll-padding-top:112px}
 .portrait-frame:hover:before{filter:none}
 .site-shell.theme-light{--ink:#f0f0eb;--acid:#b9d72a;--acid-soft:#cee774;background-color:var(--ink);color:#1c1c1c}
 .site-shell.theme-light:before{opacity:1;background-image:radial-gradient(circle 250px at var(--pointer-x,50vw) var(--pointer-y,45vh),rgba(98,125,24,.11),transparent 78%),linear-gradient(rgba(20,25,12,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,25,12,.035) 1px,transparent 1px)}
-.site-shell.theme-light .site-header{background:rgba(240,240,235,.94)}
+.site-shell.theme-light .site-header{background:#f0f0eb}
 .site-shell.theme-light .site-header nav a{color:#565750}
 .site-shell.theme-light .site-header nav a:hover{color:#809b12}
 .site-shell.theme-light .menu-toggle span{background:#222}
@@ -48,15 +48,15 @@ html{scroll-padding-top:112px}
 .portfolio-button:hover{transform:translateY(-3px);box-shadow:0 9px 24px #0002}
 .portfolio-button span{font-size:17px;font-weight:500}
 .portfolio-button--projects{background:#e3ef26;color:#181a0c}
-.portfolio-button--resume{background:#c9b7ff;color:#211a38}
+.portfolio-button--resume{background:#ffffff;color:#000000}
 .site-shell.theme-light .portfolio-button--projects{background:#e3ef26;color:#181a0c}
-.site-shell.theme-light .portfolio-button--resume{background:#c9b7ff;color:#211a38}
+.site-shell.theme-light .portfolio-button--resume{background:#071B2B;color:#ffffff}
 @media(max-width:800px){.portrait-frame img{height:calc(100% + 18px);transform:translateY(-18px);object-position:center top}.portrait-frame:hover img{transform:translateY(-18px) scale(1.035)}.portrait-actions{margin-bottom:14px}}
 @media(max-width:440px){.portrait-actions{gap:9px}.portfolio-button{min-height:46px;padding:0 14px;font-size:11px}}
 @property --pointer-x{syntax:"<length>";inherits:true;initial-value:50vw}
 @property --pointer-y{syntax:"<length>";inherits:true;initial-value:45vh}
 
-.site-shell.theme-light .portfolio-button--resume{background:#c9b7ff;color:#211a38}
+.site-shell.theme-light .portfolio-button--resume{background:#071B2B;color:#ffffff}
 .site-shell.theme-light:before{background-image:radial-gradient(circle 250px at var(--pointer-x,50vw) var(--pointer-y,45vh),rgba(72,92,12,.3),transparent 78%),linear-gradient(rgba(20,25,12,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,25,12,.035) 1px,transparent 1px)}
 
 .site-footer{padding:11px 5vw;background:linear-gradient(110deg,#d8ed73,#e4f33c)}
@@ -109,7 +109,7 @@ html{scroll-padding-top:112px}
 .education-details h3{margin:0 0 3px;font-size:clamp(14px,1.2vw,17px);font-weight:800;line-height:1.4}
 .education-details p{font-size:14px;line-height:1.45;margin:0 0 9px}
 .education-details .graduation{margin:10px 0}
-.gpa-pill,.issued-pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:#c9b7ff;color:#211a38;padding:9px 24px;font-size:14px;font-weight:700;width:max-content}
+.gpa-pill,.issued-pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:#071B2B;color:#ffffff;padding:9px 24px;font-size:14px;font-weight:700;width:max-content}
 .coursework-label{margin:14px 0 8px!important;font-weight:600}
 .coursework-list{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .coursework-list li{border:1.5px solid #d9ed00;border-radius:999px;padding:6px 11px;font-size:11px;font-weight:600;line-height:1.2}
@@ -211,55 +211,245 @@ html{scroll-padding-top:112px}
 @media(max-width:800px){.hero-section{position:relative;isolation:isolate}.hero-copy,.portrait-wrap{position:relative;z-index:1}.hero-orb-slot{left:70%;right:auto;top:5px;transform:translateX(-50%);width:180px;height:180px;opacity:.32;z-index:0}}
 @media(max-width:600px){.hero-orb-slot{left:78%;top:0;width:132px;height:132px;opacity:.28}}
 
-/* Pointer-reactive Framer Motion background layers. */
-.interactive-backdrop{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;isolation:isolate}
-.cursor-aura{position:absolute;left:0;top:0;border-radius:50%;pointer-events:none;will-change:transform}
-.cursor-aura--wide{width:560px;height:560px;margin:-280px 0 0 -280px;background:radial-gradient(circle,rgba(218,240,40,.14) 0%,rgba(156,192,23,.08) 34%,rgba(74,105,16,.035) 54%,transparent 74%);filter:blur(18px);mix-blend-mode:screen}
-.cursor-aura--core{width:280px;height:280px;margin:-140px 0 0 -140px;background:radial-gradient(circle,rgba(228,244,62,.11) 0%,rgba(228,244,62,.035) 42%,transparent 72%);filter:blur(9px);mix-blend-mode:screen}
-.interactive-backdrop--light .cursor-aura--wide{background:radial-gradient(circle,rgba(87,119,6,.18) 0%,rgba(119,149,23,.11) 34%,rgba(129,151,41,.045) 54%,transparent 74%);mix-blend-mode:multiply}
-.interactive-backdrop--light .cursor-aura--core{background:radial-gradient(circle,rgba(74,101,8,.15) 0%,rgba(110,137,26,.05) 42%,transparent 72%);mix-blend-mode:multiply}
-.cursor-particle-field{position:absolute;inset:0}
-.cursor-particle{position:absolute;display:block;border-radius:50%;background:#e3ef26;box-shadow:0 0 12px rgba(227,239,38,.75);will-change:transform,opacity}
-.interactive-backdrop--light .cursor-particle{background:#92aa1b;box-shadow:0 0 12px rgba(102,127,13,.35)}
-.cursor-scanline{position:absolute;top:46%;left:-14%;width:128%;height:1px;background:linear-gradient(90deg,transparent,rgba(227,239,38,.08),transparent);opacity:.5}
-.site-header,.route-content,.site-footer{z-index:1}
-.site-header{z-index:10}
-@media(max-width:800px){.cursor-aura--wide{width:420px;height:420px;margin:-210px 0 0 -210px;opacity:.72}.cursor-aura--core{width:210px;height:210px;margin:-105px 0 0 -105px}.cursor-particle:nth-child(even){display:none}.cursor-scanline{opacity:.28}}
-@media(prefers-reduced-motion:reduce){.cursor-aura,.cursor-particle,.cursor-scanline{display:none!important}}
-
-.cursor-orbit-system{position:absolute;left:0;top:0;width:250px;height:250px;margin:-125px 0 0 -125px;perspective:700px;transform-style:preserve-3d;will-change:transform}
-.cursor-orbit-ring{position:absolute;display:block;border-radius:50%;pointer-events:none}
-.cursor-orbit-ring--outer{inset:5px;border:1px solid rgba(227,239,38,.23);border-top-color:rgba(227,239,38,.9);border-right-color:rgba(227,239,38,.48);transform:rotateX(66deg) rotateY(-18deg);animation:cursor-orbit-spin 11s linear infinite}
-.cursor-orbit-ring--middle{inset:25px;border:1px dashed rgba(227,239,38,.34);border-bottom-color:rgba(227,239,38,.86);transform:rotateY(64deg) rotateX(23deg);animation:cursor-orbit-spin-reverse 15s linear infinite}
-.cursor-orbit-ring--inner{inset:52px;border:1px solid rgba(227,239,38,.16);border-left-color:rgba(227,239,38,.72);transform:rotateX(72deg) rotateZ(25deg);animation:cursor-orbit-spin 8s linear infinite}
-.cursor-orbit-marker{position:absolute;width:8px;height:8px;border-radius:50%;background:#e3ef26;box-shadow:0 0 14px 3px rgba(227,239,38,.55)}
-.cursor-orbit-marker--one{left:18%;top:30%;animation:cursor-marker-pulse 2.2s ease-in-out infinite}
-.cursor-orbit-marker--two{right:17%;top:48%;width:5px;height:5px;animation:cursor-marker-pulse 2.8s .5s ease-in-out infinite}
-.cursor-orbit-marker--three{left:39%;bottom:12%;width:4px;height:4px;animation:cursor-marker-pulse 2.4s 1s ease-in-out infinite}
-.cursor-orbit-center{position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px;border-radius:50%;background:#f6ff65;box-shadow:0 0 12px 4px rgba(227,239,38,.8)}
-.interactive-backdrop--light .cursor-orbit-ring--outer{border-color:rgba(104,132,11,.24);border-top-color:rgba(90,117,0,.8);border-right-color:rgba(104,132,11,.48)}
-.interactive-backdrop--light .cursor-orbit-ring--middle{border-color:rgba(104,132,11,.34);border-bottom-color:rgba(90,117,0,.85)}
-.interactive-backdrop--light .cursor-orbit-ring--inner{border-color:rgba(104,132,11,.2);border-left-color:rgba(90,117,0,.72)}
-.interactive-backdrop--light .cursor-orbit-marker,.interactive-backdrop--light .cursor-orbit-center{background:#7d970d;box-shadow:0 0 12px 3px rgba(104,132,11,.4)}
-@keyframes cursor-orbit-spin{to{rotate:360deg}}
-@keyframes cursor-orbit-spin-reverse{to{rotate:-360deg}}
-@keyframes cursor-marker-pulse{0%,100%{opacity:.42;scale:.75}50%{opacity:1;scale:1.25}}
-@media(max-width:800px){.cursor-orbit-system{width:180px;height:180px;margin:-90px 0 0 -90px;opacity:.76}.cursor-orbit-marker{width:6px;height:6px}}
-@media(prefers-reduced-motion:reduce){.cursor-orbit-system{display:none!important}}
-
-/* Keep the cursor rings visible over cards; the layer never intercepts clicks. */
+/* Keep the background grid stable behind the content. */
 .site-shell:before{background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:72px 72px,72px 72px;background-repeat:repeat,repeat}
 .site-shell.theme-light:before{background-image:linear-gradient(rgba(20,25,12,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,25,12,.035) 1px,transparent 1px);background-size:72px 72px,72px 72px;background-repeat:repeat,repeat}
-.cursor-foreground{position:fixed;inset:0;z-index:6;overflow:hidden;pointer-events:none}
-.cursor-orbit-system{width:300px;height:300px;margin:-150px 0 0 -150px;opacity:.96}
-.cursor-orbit-ring--outer{inset:3px;border-width:1.5px;border-color:rgba(227,239,38,.48);border-top-color:#e3ef26;border-right-color:rgba(227,239,38,.82)}
-.cursor-orbit-ring--middle{inset:29px;border-width:1.5px;border-color:rgba(227,239,38,.56);border-bottom-color:#e3ef26}
-.cursor-orbit-ring--inner{inset:62px;border-width:1.5px;border-color:rgba(227,239,38,.4);border-left-color:#e3ef26}
-.cursor-orbit-marker--one{left:18%;top:30%;width:10px;height:10px}
-.cursor-orbit-marker--two{right:17%;top:48%;width:7px;height:7px}
-.cursor-orbit-marker--three{left:39%;bottom:12%;width:6px;height:6px}
-.interactive-backdrop--light~.cursor-foreground .cursor-orbit-ring--outer{border-color:rgba(83,105,5,.48);border-top-color:#667f08;border-right-color:rgba(83,105,5,.82)}
-.interactive-backdrop--light~.cursor-foreground .cursor-orbit-ring--middle{border-color:rgba(83,105,5,.56);border-bottom-color:#667f08}
-.interactive-backdrop--light~.cursor-foreground .cursor-orbit-ring--inner{border-color:rgba(83,105,5,.4);border-left-color:#667f08}
-.interactive-backdrop--light~.cursor-foreground .cursor-orbit-marker,.interactive-backdrop--light~.cursor-foreground .cursor-orbit-center{background:#667f08;box-shadow:0 0 12px 3px rgba(83,105,5,.48)}
-@media(max-width:800px){.cursor-orbit-system{width:210px;height:210px;margin:-105px 0 0 -105px}}
+
+
+/* Cursor trail: each crossed grid tile briefly turns green, then fades back out. */
+.cursor-grid{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.cursor-grid{display:none}}
+
+@media(max-width:800px){
+  .site-header{grid-template-columns:1fr auto auto}
+  .menu-toggle{grid-column:1;grid-row:1;justify-self:start;z-index:2}
+  .wordmark{grid-column:2;grid-row:1;justify-self:start}
+  .theme-toggle{grid-column:3;grid-row:1;z-index:2}
+  .site-header:has(nav.nav-open){background:var(--acid)}
+  .site-header nav.nav-open{position:fixed;inset:0;z-index:-1;width:100%;height:100vh;height:100dvh;display:flex;justify-content:center;gap:0;padding:100px 8vw 36px;background:var(--acid);border:0;border-radius:0;box-shadow:none}
+  .site-header nav.nav-open a{padding:20px 4px;border-bottom:1px solid #17171730;color:#20220f;font-size:clamp(28px,8vw,42px);font-weight:600}
+  .site-header nav.nav-open a:last-child{border:0}
+  .site-header nav.nav-open a.active,.site-header nav.nav-open a:hover{color:#617400}
+  .site-header:has(nav.nav-open) .wordmark{color:#171717}
+  .site-header:has(nav.nav-open) .menu-toggle span{background:#171717}
+}
+
+
+/* Skills coverflow carousel */
+.skills-carousel{position:relative;margin-top:22px;perspective:1200px}
+.skills-carousel-stage{position:relative;height:430px;overflow:hidden;display:flex;align-items:center;justify-content:center;perspective:1200px;transform-style:preserve-3d;touch-action:pan-y;cursor:grab;outline:none}
+.skills-carousel-stage:active{cursor:grabbing}
+.skills-carousel-stage:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
+.skills-carousel-card{position:absolute;top:50%;left:50%;translate:0 -50%;width:min(430px,27vw);height:370px;margin-left:max(-215px,-13.5vw);transform-style:preserve-3d;cursor:pointer}
+.skills-carousel-card .skill-group{width:100%;height:100%;min-height:0;padding:26px 25px;overflow:auto;box-shadow:0 22px 65px #0003}
+.skills-carousel-card .skill-group-heading{margin-bottom:21px}
+.skills-carousel-card .skill-group-heading h3{font-size:clamp(20px,2.3vw,28px)}
+.skills-carousel-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:13px;color:#a5a5a5;font:10px var(--mono);letter-spacing:.06em}
+.skills-carousel-controls b{color:var(--acid);font-weight:500}
+.skills-carousel-controls button{width:38px;height:38px;border:1px solid #ffffff35;border-radius:50%;background:#ffffff08;color:#f7f7f5;font-size:20px;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.skills-carousel-controls button:hover{background:var(--acid);color:#171717;transform:scale(1.06)}
+.skills-carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:13px}
+.skills-carousel-dots button{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:#ffffff48;cursor:pointer;transition:width .2s,background .2s}
+.skills-carousel-dots button[aria-current="true"]{width:23px;border-radius:5px;background:var(--acid)}
+.site-shell.theme-light .skills-carousel-controls button{color:#202020;border-color:#1d1d1d33}
+.site-shell.theme-light .skills-carousel-controls button:hover{color:#171717}
+.site-shell.theme-light .skills-carousel-dots button{background:#1d1d1d45}
+.site-shell.theme-light .skills-carousel-dots button[aria-current="true"]{background:var(--acid)}
+@media(max-width:700px){.skills-carousel{margin-top:14px}.skills-carousel-stage{height:370px}.skills-carousel-card{width:68vw;height:330px;margin-left:-34vw}.skills-carousel-card .skill-group{padding:21px 19px}.skills-carousel-card .skill-group-heading{margin-bottom:16px}.skills-carousel-card .skill-badges{gap:6px}.skills-carousel-card .skill-badges img{height:28px}.skills-carousel-controls{gap:13px;font-size:8px}.skills-carousel-controls button{width:34px;height:34px}}
+@media(prefers-reduced-motion:reduce){.skills-carousel-stage{scroll-behavior:auto}}
+
+
+/* Full-width green break between the About intro and the skill categories. */
+.skills-section{width:100vw;max-width:none;margin:76px 0 0 calc(50% - 50vw);padding:64px max(5vw,calc((100vw - 1440px)/2)) 66px;background:var(--acid);color:#171717;border-top:1px solid #17171730;border-bottom:1px solid #17171730;overflow:hidden}
+.skills-section:before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:#17171730}
+.skills-section .section-heading{max-width:1440px;margin:0 auto 15px}
+.skills-section .section-heading>span{color:#454a1b}
+.skills-section .section-heading h2,.site-shell.theme-light .skills-section .section-heading h2{color:#171717}
+.skills-section .section-heading h2 span{color:#617400}
+.skills-carousel{max-width:1440px;margin:0 auto;perspective:1400px}
+.skills-carousel-stage{height:480px}
+.skills-carousel-card{height:390px}
+.skills-carousel-card .skill-group{box-shadow:0 22px 60px #1112}
+.skills-carousel-arrow{position:absolute;top:50%;z-index:30;display:grid;place-items:center;width:76px;height:76px;margin-top:-38px;border:1px solid #17171745;border-radius:50%;background:#171717;color:var(--acid);font-size:42px;line-height:1;cursor:pointer;box-shadow:0 10px 28px #0002;transition:transform .2s,background .2s,color .2s}
+.skills-carousel-arrow:hover{transform:scale(1.08);background:#f7f7f5;color:#171717}
+.skills-carousel-arrow--prev{left:0}
+.skills-carousel-arrow--next{right:0}
+.skills-carousel-controls{margin-top:0;color:#333;font-size:11px}
+.skills-carousel-controls b{color:#171717}
+.skills-carousel-dots button{background:#17171755}
+.skills-carousel-dots button[aria-current="true"]{background:#171717}
+@media(max-width:1000px){.skills-carousel-arrow{width:62px;height:62px;margin-top:-31px;font-size:34px}.skills-carousel-arrow--prev{left:4px}.skills-carousel-arrow--next{right:4px}}
+@media(max-width:700px){.skills-section{margin-top:50px;padding:38px 5vw 42px}.skills-section .section-heading{margin-bottom:4px}.skills-carousel-stage{height:390px}.skills-carousel-card{height:330px}.skills-carousel-arrow{width:46px;height:46px;margin-top:-23px;font-size:26px}.skills-carousel-arrow--prev{left:1px}.skills-carousel-arrow--next{right:1px}.skills-carousel-card .skill-group{padding:21px 19px}.skills-carousel-controls{margin-top:-1px}}
+
+
+/* Subtle oversized circle motif behind the opaque skills cards. */
+.skills-section:after{content:"";position:absolute;z-index:0;pointer-events:none;top:-50%;right:-13%;width:clamp(620px,66vw,1080px);aspect-ratio:1;border:1px solid #17171728;border-radius:50%;box-shadow:0 0 0 54px #17171708,0 0 0 108px #17171706}
+.skills-section .skills-carousel{position:relative;z-index:1}
+.skills-carousel-card .skill-group{background:#f7f7f5;opacity:1}
+@media(max-width:700px){.skills-section:after{top:-8%;right:-70%;width:620px;box-shadow:0 0 0 34px #17171708,0 0 0 68px #17171706}}
+
+
+/* Full-screen scroll layers: each new panel pins over the one before it. */
+@media(min-width:801px){
+  .hero-section{position:sticky;top:0;z-index:1;height:100svh;min-height:100svh;background:var(--ink)}
+  .home-manifesto,.home-services,.home-approach,.home-contact{position:sticky;top:0;z-index:2;min-height:100svh;height:100svh;max-width:none;background-color:var(--ink)}
+  .home-manifesto{z-index:2}
+  .home-services{z-index:3;width:100%;padding-inline:max(8vw,calc((100vw - 1200px)/2))}
+  .home-approach{z-index:4;background-color:var(--acid)}
+  .home-contact{z-index:5}
+  .ticker{position:relative;z-index:3}
+}
+/* Keep the coverflow spanning the full content width inside the sticky panel. */
+.skills-section .skills-carousel{width:100%;flex:0 0 auto}
+.skills-section .section-heading{width:100%;flex:0 0 auto}
+
+
+
+
+/* Keep the About page in normal document flow; only the homepage uses pinned panels. */
+.about-intro-layer,.about-certifications-layer,.skills-pin-layer{position:static;height:auto;min-height:0;z-index:auto;background:transparent}
+.skills-section{position:relative;top:auto;z-index:auto;height:auto;min-height:100svh;margin-top:76px;display:flex;flex-direction:column;justify-content:center}
+
+@media(max-width:700px){.skills-section{margin-top:50px}}
+
+
+/* Sticky under-page footer reveal. */
+.site-shell{position:relative;z-index:1;margin-bottom:0}
+.site-footer{position:fixed;z-index:0;left:0;right:0;bottom:0;width:100%;min-height:82px}
+.footer-reveal-spacer{height:100px;flex:none}
+@media(max-width:800px){.footer-reveal-spacer{height:120px}.site-footer{min-height:100px}}
+@media(prefers-reduced-motion:reduce){.site-footer{opacity:1!important}}
+
+
+.site-footer{background:linear-gradient(110deg,#d8ed73,#e4f33c)}
+
+
+/* Grid highlights sit between each section background and its foreground content. */
+.hero-section,.scroll-panel,.ticker,.about-intro,.skills-section,.certifications-section{position:relative}
+.hero-section>.cursor-grid,.scroll-panel>.cursor-grid,.ticker>.cursor-grid,.about-intro>.cursor-grid,.skills-section>.cursor-grid,.certifications-section>.cursor-grid,.site-footer>.cursor-grid{z-index:0}
+.hero-section>:not(.cursor-grid),.scroll-panel>:not(.cursor-grid),.ticker>:not(.cursor-grid),.about-intro>:not(.cursor-grid),.skills-section>:not(.cursor-grid),.certifications-section>:not(.cursor-grid),.site-footer>:not(.cursor-grid){position:relative;z-index:1}
+
+/* Let section-local cursor canvases extend across the full viewport width. */
+.cursor-grid{left:calc(50% - 50vw);right:auto;width:100vw}
+
+
+
+
+
+/* Teal, charcoal, and mint palette */
+:root{--acid:#36b5a0;--acid-soft:#e6f1e9;--ink:#202626}
+.site-shell:before{background-image:radial-gradient(circle 250px at var(--pointer-x,50vw) var(--pointer-y,45vh),rgba(54,181,160,.16),transparent 78%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px)}
+.status-dot{box-shadow:0 0 12px rgba(54,181,160,.8)}
+@keyframes pulse{50%{opacity:.45;box-shadow:0 0 2px rgba(54,181,160,.8)}}
+.portrait-frame,.portrait-frame:before{background:linear-gradient(140deg,#bfe9df,#36b5a0)}
+.site-footer{background:linear-gradient(110deg,#bfe9df,#e6f1e9)}
+.site-shell.theme-light{--ink:#e6f1e9;--acid:#278f80;--acid-soft:#bfe9df}
+.site-shell .contact-button,.site-shell.theme-light .contact-button{background:linear-gradient(110deg,#bfe9df,#36b5a0)}
+.portfolio-button--projects,.site-shell.theme-light .portfolio-button--projects{background:#36b5a0;color:#172421}
+.footer-link:hover,.footer-top>a:hover{background:#202626;color:#bfe9df}
+.preloader{background:linear-gradient(125deg,#bfe9df,#e6f1e9)}
+.skills-section:after{border-color:#20262628;box-shadow:0 0 0 54px #20262608,0 0 0 108px #20262606}
+.about-portrait{background:linear-gradient(130deg,#bfe9df,#36b5a0)}
+.about-portrait img{background:linear-gradient(130deg,#bfe9df,#36b5a0)}
+.coursework-list li{border-color:#36b5a0}
+.site-shell.theme-light:before{background-image:radial-gradient(circle 250px at var(--pointer-x,50vw) var(--pointer-y,45vh),rgba(39,143,128,.12),transparent 78%),linear-gradient(rgba(32,38,38,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(32,38,38,.045) 1px,transparent 1px)}
+
+/* The Skills title period follows the active color theme. */
+.skills-section .section-heading h2 span{color:#fff}
+.site-shell.theme-light .skills-section .section-heading h2 span{color:#278f80}
+
+/* Keep the underlying grid continuous and clearly visible on dark pages. */
+.site-shell:before{background-image:radial-gradient(circle 250px at var(--pointer-x,50vw) var(--pointer-y,45vh),rgba(54,181,160,.16),transparent 78%),linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:auto,72px 72px,72px 72px;background-repeat:no-repeat,repeat,repeat}
+.site-shell.theme-light:before{background-image:radial-gradient(circle 250px at var(--pointer-x,50vw) var(--pointer-y,45vh),rgba(39,143,128,.12),transparent 78%),linear-gradient(rgba(32,38,38,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(32,38,38,.065) 1px,transparent 1px)}
+
+/* Keep Skills title accent and section teal consistent across themes. */
+.skills-section{background:#36b5a0}
+.site-shell.theme-light .skills-section{background:#36b5a0}
+.skills-section .section-heading h2 span,.site-shell.theme-light .skills-section .section-heading h2 span{color:#fff}
+
+/* Use the same teal for remaining accents in both themes. */
+.site-shell.theme-light{--acid:#36b5a0}
+.site-shell.theme-light .site-header nav a:hover,.site-shell.theme-light .site-header nav a.active{color:#36b5a0}
+.site-shell.theme-light .about-title span{color:#36b5a0}
+.site-shell.theme-light .theme-toggle.is-on .toggle-thumb{background:#36b5a0}
+.site-shell.theme-light .skills-carousel-controls button:hover{background:#36b5a0;color:#172421}
+.site-shell.theme-light .skills-carousel-dots button[aria-current="true"]{background:#36b5a0}
+.site-shell.theme-light .credential-label:hover{color:#36b5a0}
+.site-footer{background:#36b5a0}
+
+.site-footer{background-color:#36b5a0!important;background-image:none!important}
+.site-footer>.cursor-grid{display:none!important}
+.site-footer{z-index:2}
+
+/* Footer follows the document and appears only after the page content. */
+.site-footer{position:relative;z-index:auto;left:auto;right:auto;bottom:auto;width:100%;min-height:0;opacity:1!important}
+.footer-reveal-spacer{display:none!important}
+.site-footer{position:relative;z-index:2;background:#36b5a0!important;background-image:none!important}
+
+@media(max-width:800px){
+  .site-header nav.nav-open a,.site-shell.theme-light .site-header nav.nav-open a{color:#171717}
+  .site-header nav.nav-open a.active,.site-header nav.nav-open a:hover,.site-shell.theme-light .site-header nav.nav-open a.active,.site-shell.theme-light .site-header nav.nav-open a:hover{color:#171717}
+}
+@media(max-width:600px){
+  .hero-section{padding-top:20px;gap:22px}
+  .hero-copy{padding-top:0}
+  .hero-copy h1{font-size:clamp(50px,13vw,68px);margin-bottom:18px}
+  .intro-card{min-height:280px;padding:19px 5% 16px}
+  .intro-card>p{font-size:14px;line-height:1.45;margin:14px 0 16px}
+}
+
+@media(max-width:700px){
+  .skills-section .skills-carousel{width:calc(100% + 10vw);margin-left:-5vw}
+  .skills-carousel-stage{height:460px}
+  .skills-carousel-card{width:92vw;height:410px;margin-left:-46vw}
+  .skills-carousel-card .skill-group{padding:24px 20px}
+  .skills-carousel-arrow{width:42px;height:42px;margin-top:-21px;font-size:24px}
+}
+
+@media(max-width:700px){
+  .skills-carousel-stage{height:530px}
+  .skills-carousel-card{width:min(62vw,360px);height:480px;margin-left:max(-180px,-31vw)}
+}
+
+.site-shell.theme-light .skills-carousel-dots button[aria-current="true"]{width:24px;height:8px;border-radius:999px;background:#fff!important;box-shadow:0 0 0 1px #20262624}
+
+@media(max-width:700px){.skills-carousel-arrow{display:none!important}}
+
+@media(max-width:800px){
+  .site-header nav,.site-header nav.nav-open{
+    position:fixed;inset:0;z-index:1;width:100%;height:100vh;height:100dvh;
+    display:flex;flex-direction:column;justify-content:center;gap:0;
+    padding:100px 8vw 36px;background:var(--acid);border:0;border-radius:0;box-shadow:none;
+    opacity:0;visibility:hidden;pointer-events:none;transform:scale(.08);transform-origin:top left;
+    transition:transform .62s cubic-bezier(.16,1,.3,1),opacity .22s ease,visibility 0s linear .62s;
+    will-change:transform,opacity
+  }
+  .site-header nav.nav-open{opacity:1;visibility:visible;pointer-events:auto;transform:scale(1);transition:transform .62s cubic-bezier(.16,1,.3,1),opacity .22s ease,visibility 0s}
+  .site-header .wordmark,.site-header .theme-toggle,.site-header .menu-toggle{position:relative;z-index:2}
+}
+@media(prefers-reduced-motion:reduce){.site-header nav,.site-header nav.nav-open{transition:none!important}}
+@media(max-width:800px){
+  .site-header nav,.site-header nav.nav-open{transition:transform .72s cubic-bezier(.16,1,.3,1),opacity .52s cubic-bezier(.4,0,.2,1),visibility 0s linear .72s}
+  .site-header nav.nav-open{transition:transform .72s cubic-bezier(.16,1,.3,1),opacity .4s cubic-bezier(.4,0,.2,1),visibility 0s}
+}
+@media(max-width:800px){.site-header:has(nav.nav-open){background:transparent!important}}
+.certifications-section .section-heading h2 span,.site-shell.theme-light .certifications-section .section-heading h2 span{color:#36b5a0}
+
+/* Enlarge the portrait subject while keeping it anchored to the bottom of its frame. */
+.portrait-frame img{transform:scale(1.22);transform-origin:center bottom}
+.portrait-frame:hover img{transform:scale(1.27)}
+@media(max-width:800px){.portrait-frame img{transform:scale(1.22);transform-origin:center bottom}.portrait-frame:hover img{transform:scale(1.27)}}
+
+
+/* Keep Contact visually consistent with the other centered navigation links. */
+.site-header nav{justify-content:center;gap:clamp(20px,3vw,48px)}
+.site-header nav .header-contact{display:inline-flex;align-items:center;justify-content:initial;gap:0;padding:0;border-radius:0;background:none;color:#bbb;font-size:15px;font-weight:400;white-space:nowrap;transition:color .25s,transform .25s}
+.site-header nav .header-contact:hover{transform:translateY(-2px);background:none;color:var(--acid)}
+.site-shell.theme-light .site-header nav .header-contact{color:#565750}
+.site-shell.theme-light .site-header nav .header-contact:hover{color:#36b5a0}
+@media(max-width:800px){
+  .site-header nav.nav-open .header-contact{align-self:stretch;margin-top:0;padding:20px 4px;border-bottom:1px solid #17171730;border-radius:0;background:none;color:#20220f;font-size:clamp(28px,8vw,42px);font-weight:600}
+  .site-header nav.nav-open .header-contact:hover{transform:none;background:none;color:#617400}
+  .site-shell:has(.site-header nav.nav-open) .site-footer{display:none}
+}
+@media(max-width:800px){.site-header nav.nav-open .header-contact:hover,.site-header nav.nav-open .header-contact.active{color:#171717}}
